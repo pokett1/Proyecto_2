@@ -1,0 +1,1671 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.6.2" />
+<title>juego2(R)D API documentation</title>
+<meta name="description" content="" />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{font-weight:bold}#index h4 + ul{margin-bottom:.6em}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase;cursor:pointer}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>juego2(R)D</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">import pygame
+import sys
+import random
+from pygame.locals import *
+
+
+class Zang(pygame.sprite.Sprite):
+    def __init__(self, sheet):
+        &#34;&#34;&#34;Funcion que crea el objeto de protagonista y marca sus
+        animaciones de comportamiento
+        Args:
+            sheet (class &#39;pygame.Surface&#39;): Imagenes del protagonista
+        &#34;&#34;&#34;
+
+        # Carga el constructor de la clase padre (pygame.sprite.Sprite)
+        pygame.sprite.Sprite.__init__(self)
+
+        self.zang_sheet = sheet
+        print(type(self.zang_sheet))
+        self.i_zang = 0  # Indice de la posicion de cada sprite
+        self.espera = 0  # Contador de espera para animaciones
+        self.velocidad = 6  # Velocidad de la animacion de correr
+
+        # Lista con las posiciones de cada sprite en la sprite sheet.
+        # 0-3: Animacion de correr, 4: ascenso, 5: Punto medio de salto
+        # 6: Descenso del salto, 7: Colision
+        self.mueve = {0: (2, 2, 101, 81), 1: (113, 8, 99, 75),
+                      2: (224, 2, 99, 81), 3: (336, 8, 96, 75),
+                      4: (543, 3, 101, 85), 5: (659, 8, 96, 75),
+                      6: (766, 1, 89, 95), 7: (450, 5, 84, 87)}
+
+        self.image = self.zang_sheet.subsurface(self.mueve[self.i_zang])
+        self.image.set_colorkey(self.image.get_at((0, 0)), pygame.RLEACCEL)
+
+        self.rect = self.image.get_rect().inflate(-17, -8)
+
+    def corre(self):
+        &#34;&#34;&#34;Actualiza la imagen del sprite para animar la accion de
+        correr
+        &#34;&#34;&#34;
+        self.espera += 1
+
+        if self.espera &gt; self.velocidad:
+            self.i_zang += 1
+            self.espera = 0
+            if self.i_zang &gt; 3:
+                self.i_zang = 0
+
+            self.image = self.zang_sheet.subsurface(self.mueve[self.i_zang])
+            self.image.set_colorkey(self.image.get_at((0, 0)), pygame.RLEACCEL)
+
+    def salta(self, direccion=&#34;&#34;):
+        &#34;&#34;&#34;Actualiza la imagen del protagonista para animar la accion
+        de saltar
+        Args:
+            direccion (String): &#34;arriba&#34;, &#34;abajo&#34;, &#34;&#34;
+        &#34;&#34;&#34;
+        if direccion == &#34;arriba&#34;:
+            self.image = self.zang_sheet.subsurface(self.mueve[4])
+            self.image.set_colorkey(self.image.get_at((0, 0)), pygame.RLEACCEL)
+
+        elif direccion == &#34;abajo&#34;:
+            self.image = self.zang_sheet.subsurface(self.mueve[6])
+            self.image.set_colorkey(self.image.get_at((0, 0)), pygame.RLEACCEL)
+
+        else:
+            self.image = self.zang_sheet.subsurface(self.mueve[5])
+            self.image.set_colorkey(self.image.get_at((0, 0)), pygame.RLEACCEL)
+
+    def golpe(self):
+        &#34;&#34;&#34;Muestra la animacion de golpe
+        &#34;&#34;&#34;
+        self.image = self.zang_sheet.subsurface(self.mueve[7])
+        self.image.set_colorkey(self.image.get_at((0, 0)), pygame.RLEACCEL)
+        pygame.mixer.music.pause()
+
+
+class Ratt1(pygame.sprite.Sprite):
+    def __init__(self, foto1):
+        &#34;&#34;&#34;Funcion que crea el objeto de enemigo y marca sus
+        animaciones de comportamiento
+        Args:
+            foto1 (class &#39;pygame.Surface&#39;): Imagenes de enemigo
+        &#34;&#34;&#34;
+
+        # Carga el constructor de la clase padre (pygame.sprite.Sprite)
+        pygame.sprite.Sprite.__init__(self)
+
+        self.sprite_foto1 = foto1
+        self.r1_sprite = 0  # Indice de la posicion de cada sprite
+        self.siguiente = 0  # Contador de espera para animaciones
+        self.rapidez = 6  # Velocidad de la animacion de correr
+
+        # Lista con las posiciones de cada sprite en la sprite foto1.
+        self.r1 = {0: (2, 2, 87, 60), 1: (95, 5, 90, 57), 2: (191, 2, 72, 60)}
+
+        self.image = self.sprite_foto1.subsurface(self.r1[self.r1_sprite])
+        self.image.set_colorkey(self.image.get_at((0, 0)), pygame.RLEACCEL)
+
+        # self.rect = self.image.get_rect()
+        self.rect = self.image.get_rect().inflate(-15, -5)
+
+    def camina1(self):
+        &#34;&#34;&#34;Actualiza la imagen del sprite para animar la accion de
+        correr
+        &#34;&#34;&#34;
+        self.siguiente += 1
+
+        if self.siguiente &gt; self.rapidez:
+            self.r1_sprite += 1
+            self.siguiente = 0
+            if self.r1_sprite &gt; 2:
+                self.r1_sprite = 0
+
+            self.image = self.sprite_foto1.subsurface(self.r1[self.r1_sprite])
+            self.image.set_colorkey(self.image.get_at((0, 0)), pygame.RLEACCEL)
+
+
+class Ratt2(pygame.sprite.Sprite):
+    def __init__(self, foto2):
+        &#34;&#34;&#34;Funcion que crea el objeto de enemigo y marca sus
+        animaciones de comportamiento
+        Args:
+            foto2 (class &#39;pygame.Surface&#39;): Imagenes de enemigo
+        &#34;&#34;&#34;
+
+        # Carga el constructor de la clase padre (pygame.sprite.Sprite)
+        pygame.sprite.Sprite.__init__(self)
+
+        self.sprite_foto2 = foto2
+        self.r2_sprite = 0  # Indice de la posicion de cada sprite
+        self.siguiente = 0  # Contador de espera para animaciones
+        self.rapidez = 6  # Velocidad de la animacion de correr
+
+        # Lista con las posiciones de cada sprite en la sprite foto2.
+        self.r2 = {0: (2, 2, 72, 60), 1: (80, 2, 87, 60), 2: (173, 5, 90, 57)}
+
+        self.image = self.sprite_foto2.subsurface(self.r2[self.r2_sprite])
+        self.image.set_colorkey(self.image.get_at((0, 0)), pygame.RLEACCEL)
+
+        # self.rect = self.image.get_rect()
+        self.rect = self.image.get_rect().inflate(-15, -5)
+
+    def camina2(self):
+        &#34;&#34;&#34;Actualiza la imagen del sprite para animar la accion de
+        correr
+        &#34;&#34;&#34;
+        self.siguiente += 1
+
+        if self.siguiente &gt; self.rapidez:
+            self.r2_sprite += 1
+            self.siguiente = 0
+            if self.r2_sprite &gt; 2:
+                self.r2_sprite = 0
+
+            self.image = self.sprite_foto2.subsurface(self.r2[self.r2_sprite])
+            self.image.set_colorkey(self.image.get_at((0, 0)), pygame.RLEACCEL)
+
+
+# Variables globales
+
+# Dimenciones de la pantalla
+ANCHO = 800
+ALTO = 420
+
+# Posicion del personaje
+pos_x = 25
+POS_Y = 242
+
+# Tiempo que permanece en el aire.
+SALTO_DIST = 20
+SALTO_LARGO_DIST = 50
+
+# Posicion inicial y velocidad con la que se mueve el fondo
+fondo_x = 0
+tiempo = 2
+
+pause = False
+comienza = 1
+
+# Ticks que se ignora el boton de Pausa, para impedir que se utilice
+# para alentar el juego.
+tiempo_pausa = 0
+
+# Flags que determinan el estado del salto del personaje y el tiempo
+# que permanece ahi.
+salto = False
+salto_largo = False
+caida = False
+salto_espera = 0
+
+# Posicion y velocidad inicial de los enemigos
+bloque_x1 = 900
+bloque_x2 = -500
+vel_bloque1 = 4
+vel_bloque2 = 4
+
+# Cantidad de vidas, estado de niveles y enemigos
+vidas = 3
+nivel_1 = True
+nivel_2 = False
+contador_nivel = 0
+pasa_rata = 1
+
+
+def intro():
+    &#34;&#34;&#34;Funcion que se muestra al principio del juego, haciendo de
+    &#34;interruptor&#34; para iniciar el juego
+    &#34;&#34;&#34;
+    global comienza
+
+    texto_pausa = pygame.font.SysFont(None, 55)
+    pantalla_pausa = texto_pausa.render(&#34;Pesione espacio para iniciar&#34;, True, pygame.Color(&#34;white&#34;))
+    centro_pausa = pantalla_pausa.get_rect(center=pantalla.get_rect().center)
+    pantalla.blit(pantalla_pausa, centro_pausa)
+
+    pygame.display.update()
+
+    while comienza &gt; 0:
+
+        for event in pygame.event.get():
+
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    comienza = 0
+
+    fps.tick(0.5)
+
+
+def iniciar():
+    &#34;&#34;&#34;Iniciacion de modulos importados, pantalla, reloj, variables,
+    musica, se ejecuta una unica vez al inicio del programa.
+    &#34;&#34;&#34;
+    global pantalla, fps
+
+    pygame.init()
+
+    pygame.mixer.music.load(&#39;Big_Blue.mp3&#39;)
+    pygame.mixer.music.play(0, 0)
+
+    pantalla = pygame.display.set_mode((ANCHO, ALTO))
+    pygame.display.set_caption(&#34;Zangoose run&#34;)
+    fps = pygame.time.Clock()
+
+    cargar()
+    return
+
+
+def cargar():
+    &#34;&#34;&#34;Carga archivos que se utilizan en el juego
+    &#34;&#34;&#34;
+    global fondo, zangoose, rattata1, rattata2, sprite_lista, bloque_lista
+
+    fondo = pygame.image.load(&#34;fondo.png&#34;)
+
+    sprite_lista = pygame.sprite.Group()
+
+    zangoose = Zang(pygame.image.load(&#34;derecha.png&#34;).convert())
+    sprite_lista.add(zangoose)
+
+    rattata1 = Ratt1(pygame.image.load(&#34;enemigo1.png&#34;).convert())
+    rattata2 = Ratt2(pygame.image.load(&#34;enemigo2.png&#34;).convert())
+    sprite_lista.add(rattata1)
+    sprite_lista.add(rattata2)
+
+    bloque_lista = pygame.sprite.Group()
+    bloque_lista.add(rattata1)
+    bloque_lista.add(rattata2)
+
+    return
+
+
+def actualizar():
+    &#34;&#34;&#34;Metodos que se llaman cada ciclo del juego durante su ejecucion.
+    Incluye eventos de teclado, actualizacion de graficos y enemigos, y
+    colisiones
+    &#34;&#34;&#34;
+    tecla()
+
+    mover_zangoose()
+
+    mover_rattata1()
+
+    mover_rattata2()
+
+    detectar_colision()
+
+    sprite_lista.draw(pantalla)
+    pygame.display.flip()
+
+    # Si hay ciclos que saltar, descuenta uno por ciclo
+    global tiempo_pausa
+    if tiempo_pausa &gt; 0:
+        tiempo_pausa -= 1
+
+    return
+
+
+def nivel():
+    &#34;&#34;&#34;Pone fin al nivel uno mostrando una pantalla de &#34;NIVEL 2&#34; y
+    prepara el siguiente nivel de dificultad, reubicando las
+    pocisiones del personaje y de los enemigos.
+    &#34;&#34;&#34;
+    global nivel_2, bloque_x1, bloque_x2
+    global POS_Y, pos_x, caida, salto, salto_largo, salto_espera
+
+    texto_mas = pygame.font.SysFont(None, 90)
+    pantalla_mas = texto_mas.render(&#34;NIVEL 2&#34;, True, pygame.Color(&#34;white&#34;))
+    centro_mas = pantalla_mas.get_rect(center=pantalla.get_rect().center)
+    pantalla.blit(pantalla_mas, centro_mas)
+
+    nivel_2 = True
+    bloque_x1 = random.randrange(900, 1500)
+    bloque_x2 = random.randrange(-1100, -500)
+    salto = False
+    salto_largo = False
+    caida = False
+    salto_espera = 0
+    pos_x = 325
+    POS_Y = 242
+    zangoose.i_sprite = 0
+
+    pygame.display.update()
+    fps.tick(1)
+
+
+def final():
+    &#34;&#34;&#34; Texto que se muestra al completar el objetivo del juego
+    &#34;&#34;&#34;
+    texto_final = pygame.font.SysFont(None, 90)
+    pantalla_final = texto_final.render(&#34;FIN&#34;, True, pygame.Color(&#34;white&#34;))
+    centro_final = pantalla_final.get_rect(center=pantalla.get_rect().center)
+
+    pantalla.blit(pantalla_final, centro_final)
+
+    pygame.mixer.music.pause()
+
+    while True:
+        pygame.display.update()
+
+        for event in pygame.event.get():
+
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+
+def mover_zangoose():
+    &#34;&#34;&#34;Actualilza el numero de vidas extras del personaje, movimiento
+    del fondo y del personaje junto con su accion, dependiendo de lo
+    que este haciendo (&#34;correr&#34; o saltar)
+    &#34;&#34;&#34;
+    global salto, caida, fondo_x, tiempo, salto_largo, salto_espera
+    global pos_x, POS_Y, vidas, v_r
+
+    # Movimiento del fondo
+    if fondo_x == -1083 or fondo_x == -1084:
+        fondo_x = -84
+        pantalla.blit(fondo, (fondo_x, 0))
+    else:
+        pantalla.blit(fondo, (fondo_x, 0))
+        fondo_x = fondo_x - tiempo
+
+    # Muestra las vidas extras del personaje (v_r).
+    texto_vidas = pygame.font.SysFont(None, 30)
+    if vidas == 3:
+        v_r = texto_vidas.render(&#34;Vidas extra: 2&#34;, True, pygame.Color(&#34;brown&#34;))
+    if vidas == 2:
+        v_r = texto_vidas.render(&#34;Vidas extra: 1&#34;, True, pygame.Color(&#34;brown&#34;))
+    if vidas == 1:
+        v_r = texto_vidas.render(&#34;Vidas extra: 0&#34;, True, pygame.Color(&#34;brown&#34;))
+    pantalla.blit(v_r, [25, 25])
+
+    zangoose.rect.x = pos_x
+    zangoose.rect.y = POS_Y
+
+    # Movimiento del personaje
+    if salto is False and salto_largo is False:
+        zangoose.corre()
+
+    # Salto simple
+    if salto is True:
+
+        if caida is False:
+            POS_Y -= 3
+            if POS_Y &gt; 140:
+                zangoose.salta(&#34;arriba&#34;)
+
+        if caida is True:
+            POS_Y += 3
+            zangoose.salta(&#34;abajo&#34;)
+
+        if POS_Y == 137:
+            salto_espera += 1
+            POS_Y = 140
+            zangoose.salta()
+            if salto_espera &gt; SALTO_DIST:
+                salto_espera = 0
+                POS_Y = 137
+                caida = True
+
+        if POS_Y == 242:
+            caida = False
+            salto = False
+            salto_largo = False
+
+    # Salto largo
+    if salto_largo is True:
+
+        if caida is False:
+            POS_Y -= 3
+            if POS_Y &gt; 140:
+                zangoose.salta(&#34;arriba&#34;)
+
+        if caida is True:
+            POS_Y += 3
+            zangoose.salta(&#34;abajo&#34;)
+
+        if POS_Y == 137:
+            salto_espera += 1
+            POS_Y = 140
+            zangoose.salta()
+            if salto_espera &gt; SALTO_LARGO_DIST:
+                salto_espera = 0
+                POS_Y = 137
+                caida = True
+
+        if POS_Y == 242:
+            caida = False
+            salto = False
+            salto_largo = False
+    return
+
+
+def mover_rattata1():
+    &#34;&#34;&#34;Funcion que hace el movimiento a traves de la pantalla del
+    primer enemigo
+    &#34;&#34;&#34;
+    global bloque_x1, vel_bloque1
+    global pasa_rata, contador_nivel, nivel_1, nivel_2
+
+    rattata1.camina1()
+
+    rattata1.rect.x = bloque_x1
+    rattata1.rect.y = 260
+
+    if pasa_rata == 1:
+        if bloque_x1 &gt; -400:
+            bloque_x1 -= vel_bloque1
+        else:
+            vel_bloque1 = random.randrange(4, 7)
+            bloque_x1 = random.randrange(900, 1500)
+
+            if nivel_1 is True:
+                contador_nivel += 1
+                print(contador_nivel)
+
+                if contador_nivel == 2:
+                    nivel_1 = False
+                    nivel()
+                    contador_nivel = 0
+
+            if nivel_2 is True:
+                contador_nivel += 1
+                print(contador_nivel)
+
+                pasa_rata = 2
+                if contador_nivel == 2:
+                    nivel_2 = False
+                    final()
+
+
+def mover_rattata2():
+    &#34;&#34;&#34;Funcion que hace el movimiento a traves de la pantalla del
+    segundo enemigo
+    &#34;&#34;&#34;
+    global bloque_x2, vel_bloque2, pasa_rata
+
+    rattata2.camina2()
+
+    rattata2.rect.x = bloque_x2
+    rattata2.rect.y = 260
+
+    if pasa_rata == 2:
+
+        if bloque_x2 &lt; 1000:
+            bloque_x2 += vel_bloque2
+        else:
+            vel_bloque2 = random.randrange(4, 8)
+            bloque_x2 = random.randrange(-1000, -500)
+            pasa_rata = 1
+
+
+def detectar_colision():
+    &#34;&#34;&#34;Detecta si ocurre una colision entre el protagonista y algun
+    enemigo
+    &#34;&#34;&#34;
+    global pause, pantalla
+
+    colision = pygame.sprite.spritecollide(zangoose, bloque_lista, False)
+
+    if colision:
+        zangoose.golpe()
+        sprite_lista.draw(pantalla)
+        pygame.display.flip()
+        un_seg()
+        pause = True
+        morido()
+
+
+def tecla():
+    &#34;&#34;&#34;Lee el estado del teclado y realiza las acciones acorde a la
+    tecla presionada y al estado actual del personaje.
+
+    X = Salto
+    C = Salto largo
+    P = Pausa
+    &#34;&#34;&#34;
+    global salto, salto_largo, pause, tiempo_pausa
+
+    teclado = pygame.key.get_pressed()
+
+    if teclado[K_p] and pause is False and tiempo_pausa == 0:
+        pause = True
+        detener()
+
+    if pause is False:
+        if teclado[K_x] and salto is False and salto_largo is False:
+            salto = True
+
+        if teclado[K_c] and salto is False and salto_largo is False:
+            salto_largo = True
+
+    else:
+        pause = True
+
+    for eventos in pygame.event.get():
+        if eventos.type == pygame.QUIT:
+            sys.exit()
+
+    return
+
+
+def detener():
+    &#34;&#34;&#34;Funcion que pausa el juego y cuenta con un contador para que
+    no se pueda hacer pausa hasta despues de algun tiempo
+    &#34;&#34;&#34;
+    global pantalla, pause, tiempo_pausa
+
+    texto_pausa = pygame.font.SysFont(None, 115)
+    pantalla_pausa = texto_pausa.render(&#34;PAUSA&#34;, True, pygame.Color(&#34;white&#34;))
+    centro_pausa = pantalla_pausa.get_rect(center=pantalla.get_rect().center)
+    pygame.mixer.music.pause()
+
+    pantalla.blit(pantalla_pausa, centro_pausa)
+
+    while pause:
+        for event in pygame.event.get():
+
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_p:
+                    tiempo_pausa = 80
+                    pause = False
+                    pygame.mixer.music.unpause()
+
+        pygame.display.update()
+        fps.tick(15)
+
+
+def morido():
+    &#34;&#34;&#34;Funcion que pausa el juego y que muestra lo que ocurre cuando
+    sucede una colision.
+    &#34;&#34;&#34;
+
+    global pause, pantalla, sprite_lista, bloque_x1, bloque_x2, POS_Y, vidas
+    global caida, salto, salto_largo, salto_espera, contador_nivel
+
+    vidas -= 1
+
+    texto_fin = pygame.font.SysFont(None, 90)
+    pantalla_fin = texto_fin.render(&#34;GAME OVER&#34;, True, pygame.Color(&#34;white&#34;))
+    centro_fin = pantalla_fin.get_rect(center=pantalla.get_rect().center)
+
+    if vidas &gt; 0:
+        tex_reint = pygame.font.SysFont(None, 40)
+        de_nuevo = tex_reint.render(&#34;Aprete Z&#34;, True, pygame.Color(&#34;white&#34;))
+        pantalla.blit(de_nuevo, [355, 235])
+    pantalla.blit(pantalla_fin, centro_fin)
+    while pause:
+        pygame.display.update()
+
+        if vidas &gt; 0:
+            for event in pygame.event.get():
+
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    quit()
+
+                if event.type == pygame.KEYDOWN:
+
+                    if event.key == pygame.K_z:
+                        pause = False
+                        bloque_x1 = random.randrange(900, 1500)
+                        bloque_x2 = random.randrange(-1100, -500)
+                        salto = False
+                        salto_largo = False
+                        caida = False
+                        salto_espera = 0
+                        POS_Y = 242
+                        zangoose.i_sprite = 0
+                        if nivel_1:
+                            contador_nivel = 0
+                        pygame.mixer.music.unpause()
+
+        else:
+            for event in pygame.event.get():
+
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    quit()
+
+
+def un_seg():
+    &#34;&#34;&#34;Funsion que hace de espera un segundo antes de seguir adelante
+    con el codigo
+    &#34;&#34;&#34;
+    fps.tick(1)
+
+
+def main():
+    &#34;&#34;&#34;Funcion que inicia el programa
+    &#34;&#34;&#34;
+    global tiempo_pausa
+
+    iniciar()
+    intro()
+    while True:
+        fps.tick(120)
+        actualizar()
+        
+
+if __name__ == &#39;__main__&#39;:
+    main()</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="juego2(R)D.actualizar"><code class="name flex">
+<span>def <span class="ident">actualizar</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Metodos que se llaman cada ciclo del juego durante su ejecucion.
+Incluye eventos de teclado, actualizacion de graficos y enemigos, y
+colisiones</p></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">def actualizar():
+    &#34;&#34;&#34;Metodos que se llaman cada ciclo del juego durante su ejecucion.
+    Incluye eventos de teclado, actualizacion de graficos y enemigos, y
+    colisiones
+    &#34;&#34;&#34;
+    tecla()
+
+    mover_zangoose()
+
+    mover_rattata1()
+
+    mover_rattata2()
+
+    detectar_colision()
+
+    sprite_lista.draw(pantalla)
+    pygame.display.flip()
+
+    # Si hay ciclos que saltar, descuenta uno por ciclo
+    global tiempo_pausa
+    if tiempo_pausa &gt; 0:
+        tiempo_pausa -= 1
+
+    return</code></pre>
+</details>
+</dd>
+<dt id="juego2(R)D.cargar"><code class="name flex">
+<span>def <span class="ident">cargar</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Carga archivos que se utilizan en el juego</p></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">def cargar():
+    &#34;&#34;&#34;Carga archivos que se utilizan en el juego
+    &#34;&#34;&#34;
+    global fondo, zangoose, rattata1, rattata2, sprite_lista, bloque_lista
+
+    fondo = pygame.image.load(&#34;fondo.png&#34;)
+
+    sprite_lista = pygame.sprite.Group()
+
+    zangoose = Zang(pygame.image.load(&#34;derecha.png&#34;).convert())
+    sprite_lista.add(zangoose)
+
+    rattata1 = Ratt1(pygame.image.load(&#34;enemigo1.png&#34;).convert())
+    rattata2 = Ratt2(pygame.image.load(&#34;enemigo2.png&#34;).convert())
+    sprite_lista.add(rattata1)
+    sprite_lista.add(rattata2)
+
+    bloque_lista = pygame.sprite.Group()
+    bloque_lista.add(rattata1)
+    bloque_lista.add(rattata2)
+
+    return</code></pre>
+</details>
+</dd>
+<dt id="juego2(R)D.detectar_colision"><code class="name flex">
+<span>def <span class="ident">detectar_colision</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Detecta si ocurre una colision entre el protagonista y algun
+enemigo</p></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">def detectar_colision():
+    &#34;&#34;&#34;Detecta si ocurre una colision entre el protagonista y algun
+    enemigo
+    &#34;&#34;&#34;
+    global pause, pantalla
+
+    colision = pygame.sprite.spritecollide(zangoose, bloque_lista, False)
+
+    if colision:
+        zangoose.golpe()
+        sprite_lista.draw(pantalla)
+        pygame.display.flip()
+        un_seg()
+        pause = True
+        morido()</code></pre>
+</details>
+</dd>
+<dt id="juego2(R)D.detener"><code class="name flex">
+<span>def <span class="ident">detener</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Funcion que pausa el juego y cuenta con un contador para que
+no se pueda hacer pausa hasta despues de algun tiempo</p></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">def detener():
+    &#34;&#34;&#34;Funcion que pausa el juego y cuenta con un contador para que
+    no se pueda hacer pausa hasta despues de algun tiempo
+    &#34;&#34;&#34;
+    global pantalla, pause, tiempo_pausa
+
+    texto_pausa = pygame.font.SysFont(None, 115)
+    pantalla_pausa = texto_pausa.render(&#34;PAUSA&#34;, True, pygame.Color(&#34;white&#34;))
+    centro_pausa = pantalla_pausa.get_rect(center=pantalla.get_rect().center)
+    pygame.mixer.music.pause()
+
+    pantalla.blit(pantalla_pausa, centro_pausa)
+
+    while pause:
+        for event in pygame.event.get():
+
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_p:
+                    tiempo_pausa = 80
+                    pause = False
+                    pygame.mixer.music.unpause()
+
+        pygame.display.update()
+        fps.tick(15)</code></pre>
+</details>
+</dd>
+<dt id="juego2(R)D.final"><code class="name flex">
+<span>def <span class="ident">final</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Texto que se muestra al completar el objetivo del juego</p></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">def final():
+    &#34;&#34;&#34; Texto que se muestra al completar el objetivo del juego
+    &#34;&#34;&#34;
+    texto_final = pygame.font.SysFont(None, 90)
+    pantalla_final = texto_final.render(&#34;FIN&#34;, True, pygame.Color(&#34;white&#34;))
+    centro_final = pantalla_final.get_rect(center=pantalla.get_rect().center)
+
+    pantalla.blit(pantalla_final, centro_final)
+
+    pygame.mixer.music.pause()
+
+    while True:
+        pygame.display.update()
+
+        for event in pygame.event.get():
+
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()</code></pre>
+</details>
+</dd>
+<dt id="juego2(R)D.iniciar"><code class="name flex">
+<span>def <span class="ident">iniciar</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Iniciacion de modulos importados, pantalla, reloj, variables,
+musica, se ejecuta una unica vez al inicio del programa.</p></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">def iniciar():
+    &#34;&#34;&#34;Iniciacion de modulos importados, pantalla, reloj, variables,
+    musica, se ejecuta una unica vez al inicio del programa.
+    &#34;&#34;&#34;
+    global pantalla, fps
+
+    pygame.init()
+
+    pygame.mixer.music.load(&#39;Big_Blue.mp3&#39;)
+    pygame.mixer.music.play(0, 0)
+
+    pantalla = pygame.display.set_mode((ANCHO, ALTO))
+    pygame.display.set_caption(&#34;Zangoose run&#34;)
+    fps = pygame.time.Clock()
+
+    cargar()
+    return</code></pre>
+</details>
+</dd>
+<dt id="juego2(R)D.intro"><code class="name flex">
+<span>def <span class="ident">intro</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Funcion que se muestra al principio del juego, haciendo de
+"interruptor" para iniciar el juego</p></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">def intro():
+    &#34;&#34;&#34;Funcion que se muestra al principio del juego, haciendo de
+    &#34;interruptor&#34; para iniciar el juego
+    &#34;&#34;&#34;
+    global comienza
+
+    texto_pausa = pygame.font.SysFont(None, 55)
+    pantalla_pausa = texto_pausa.render(&#34;Pesione espacio para iniciar&#34;, True, pygame.Color(&#34;white&#34;))
+    centro_pausa = pantalla_pausa.get_rect(center=pantalla.get_rect().center)
+    pantalla.blit(pantalla_pausa, centro_pausa)
+
+    pygame.display.update()
+
+    while comienza &gt; 0:
+
+        for event in pygame.event.get():
+
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    comienza = 0
+
+    fps.tick(0.5)</code></pre>
+</details>
+</dd>
+<dt id="juego2(R)D.main"><code class="name flex">
+<span>def <span class="ident">main</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Funcion que inicia el programa</p></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">def main():
+    &#34;&#34;&#34;Funcion que inicia el programa
+    &#34;&#34;&#34;
+    global tiempo_pausa
+
+    iniciar()
+    intro()
+    while True:
+        fps.tick(120)
+        actualizar()</code></pre>
+</details>
+</dd>
+<dt id="juego2(R)D.morido"><code class="name flex">
+<span>def <span class="ident">morido</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Funcion que pausa el juego y que muestra lo que ocurre cuando
+sucede una colision.</p></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">def morido():
+    &#34;&#34;&#34;Funcion que pausa el juego y que muestra lo que ocurre cuando
+    sucede una colision.
+    &#34;&#34;&#34;
+
+    global pause, pantalla, sprite_lista, bloque_x1, bloque_x2, POS_Y, vidas
+    global caida, salto, salto_largo, salto_espera, contador_nivel
+
+    vidas -= 1
+
+    texto_fin = pygame.font.SysFont(None, 90)
+    pantalla_fin = texto_fin.render(&#34;GAME OVER&#34;, True, pygame.Color(&#34;white&#34;))
+    centro_fin = pantalla_fin.get_rect(center=pantalla.get_rect().center)
+
+    if vidas &gt; 0:
+        tex_reint = pygame.font.SysFont(None, 40)
+        de_nuevo = tex_reint.render(&#34;Aprete Z&#34;, True, pygame.Color(&#34;white&#34;))
+        pantalla.blit(de_nuevo, [355, 235])
+    pantalla.blit(pantalla_fin, centro_fin)
+    while pause:
+        pygame.display.update()
+
+        if vidas &gt; 0:
+            for event in pygame.event.get():
+
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    quit()
+
+                if event.type == pygame.KEYDOWN:
+
+                    if event.key == pygame.K_z:
+                        pause = False
+                        bloque_x1 = random.randrange(900, 1500)
+                        bloque_x2 = random.randrange(-1100, -500)
+                        salto = False
+                        salto_largo = False
+                        caida = False
+                        salto_espera = 0
+                        POS_Y = 242
+                        zangoose.i_sprite = 0
+                        if nivel_1:
+                            contador_nivel = 0
+                        pygame.mixer.music.unpause()
+
+        else:
+            for event in pygame.event.get():
+
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    quit()</code></pre>
+</details>
+</dd>
+<dt id="juego2(R)D.mover_rattata1"><code class="name flex">
+<span>def <span class="ident">mover_rattata1</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Funcion que hace el movimiento a traves de la pantalla del
+primer enemigo</p></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">def mover_rattata1():
+    &#34;&#34;&#34;Funcion que hace el movimiento a traves de la pantalla del
+    primer enemigo
+    &#34;&#34;&#34;
+    global bloque_x1, vel_bloque1
+    global pasa_rata, contador_nivel, nivel_1, nivel_2
+
+    rattata1.camina1()
+
+    rattata1.rect.x = bloque_x1
+    rattata1.rect.y = 260
+
+    if pasa_rata == 1:
+        if bloque_x1 &gt; -400:
+            bloque_x1 -= vel_bloque1
+        else:
+            vel_bloque1 = random.randrange(4, 7)
+            bloque_x1 = random.randrange(900, 1500)
+
+            if nivel_1 is True:
+                contador_nivel += 1
+                print(contador_nivel)
+
+                if contador_nivel == 2:
+                    nivel_1 = False
+                    nivel()
+                    contador_nivel = 0
+
+            if nivel_2 is True:
+                contador_nivel += 1
+                print(contador_nivel)
+
+                pasa_rata = 2
+                if contador_nivel == 2:
+                    nivel_2 = False
+                    final()</code></pre>
+</details>
+</dd>
+<dt id="juego2(R)D.mover_rattata2"><code class="name flex">
+<span>def <span class="ident">mover_rattata2</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Funcion que hace el movimiento a traves de la pantalla del
+segundo enemigo</p></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">def mover_rattata2():
+    &#34;&#34;&#34;Funcion que hace el movimiento a traves de la pantalla del
+    segundo enemigo
+    &#34;&#34;&#34;
+    global bloque_x2, vel_bloque2, pasa_rata
+
+    rattata2.camina2()
+
+    rattata2.rect.x = bloque_x2
+    rattata2.rect.y = 260
+
+    if pasa_rata == 2:
+
+        if bloque_x2 &lt; 1000:
+            bloque_x2 += vel_bloque2
+        else:
+            vel_bloque2 = random.randrange(4, 8)
+            bloque_x2 = random.randrange(-1000, -500)
+            pasa_rata = 1</code></pre>
+</details>
+</dd>
+<dt id="juego2(R)D.mover_zangoose"><code class="name flex">
+<span>def <span class="ident">mover_zangoose</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Actualilza el numero de vidas extras del personaje, movimiento
+del fondo y del personaje junto con su accion, dependiendo de lo
+que este haciendo ("correr" o saltar)</p></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">def mover_zangoose():
+    &#34;&#34;&#34;Actualilza el numero de vidas extras del personaje, movimiento
+    del fondo y del personaje junto con su accion, dependiendo de lo
+    que este haciendo (&#34;correr&#34; o saltar)
+    &#34;&#34;&#34;
+    global salto, caida, fondo_x, tiempo, salto_largo, salto_espera
+    global pos_x, POS_Y, vidas, v_r
+
+    # Movimiento del fondo
+    if fondo_x == -1083 or fondo_x == -1084:
+        fondo_x = -84
+        pantalla.blit(fondo, (fondo_x, 0))
+    else:
+        pantalla.blit(fondo, (fondo_x, 0))
+        fondo_x = fondo_x - tiempo
+
+    # Muestra las vidas extras del personaje (v_r).
+    texto_vidas = pygame.font.SysFont(None, 30)
+    if vidas == 3:
+        v_r = texto_vidas.render(&#34;Vidas extra: 2&#34;, True, pygame.Color(&#34;brown&#34;))
+    if vidas == 2:
+        v_r = texto_vidas.render(&#34;Vidas extra: 1&#34;, True, pygame.Color(&#34;brown&#34;))
+    if vidas == 1:
+        v_r = texto_vidas.render(&#34;Vidas extra: 0&#34;, True, pygame.Color(&#34;brown&#34;))
+    pantalla.blit(v_r, [25, 25])
+
+    zangoose.rect.x = pos_x
+    zangoose.rect.y = POS_Y
+
+    # Movimiento del personaje
+    if salto is False and salto_largo is False:
+        zangoose.corre()
+
+    # Salto simple
+    if salto is True:
+
+        if caida is False:
+            POS_Y -= 3
+            if POS_Y &gt; 140:
+                zangoose.salta(&#34;arriba&#34;)
+
+        if caida is True:
+            POS_Y += 3
+            zangoose.salta(&#34;abajo&#34;)
+
+        if POS_Y == 137:
+            salto_espera += 1
+            POS_Y = 140
+            zangoose.salta()
+            if salto_espera &gt; SALTO_DIST:
+                salto_espera = 0
+                POS_Y = 137
+                caida = True
+
+        if POS_Y == 242:
+            caida = False
+            salto = False
+            salto_largo = False
+
+    # Salto largo
+    if salto_largo is True:
+
+        if caida is False:
+            POS_Y -= 3
+            if POS_Y &gt; 140:
+                zangoose.salta(&#34;arriba&#34;)
+
+        if caida is True:
+            POS_Y += 3
+            zangoose.salta(&#34;abajo&#34;)
+
+        if POS_Y == 137:
+            salto_espera += 1
+            POS_Y = 140
+            zangoose.salta()
+            if salto_espera &gt; SALTO_LARGO_DIST:
+                salto_espera = 0
+                POS_Y = 137
+                caida = True
+
+        if POS_Y == 242:
+            caida = False
+            salto = False
+            salto_largo = False
+    return</code></pre>
+</details>
+</dd>
+<dt id="juego2(R)D.nivel"><code class="name flex">
+<span>def <span class="ident">nivel</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Pone fin al nivel uno mostrando una pantalla de "NIVEL 2" y
+prepara el siguiente nivel de dificultad, reubicando las
+pocisiones del personaje y de los enemigos.</p></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">def nivel():
+    &#34;&#34;&#34;Pone fin al nivel uno mostrando una pantalla de &#34;NIVEL 2&#34; y
+    prepara el siguiente nivel de dificultad, reubicando las
+    pocisiones del personaje y de los enemigos.
+    &#34;&#34;&#34;
+    global nivel_2, bloque_x1, bloque_x2
+    global POS_Y, pos_x, caida, salto, salto_largo, salto_espera
+
+    texto_mas = pygame.font.SysFont(None, 90)
+    pantalla_mas = texto_mas.render(&#34;NIVEL 2&#34;, True, pygame.Color(&#34;white&#34;))
+    centro_mas = pantalla_mas.get_rect(center=pantalla.get_rect().center)
+    pantalla.blit(pantalla_mas, centro_mas)
+
+    nivel_2 = True
+    bloque_x1 = random.randrange(900, 1500)
+    bloque_x2 = random.randrange(-1100, -500)
+    salto = False
+    salto_largo = False
+    caida = False
+    salto_espera = 0
+    pos_x = 325
+    POS_Y = 242
+    zangoose.i_sprite = 0
+
+    pygame.display.update()
+    fps.tick(1)</code></pre>
+</details>
+</dd>
+<dt id="juego2(R)D.tecla"><code class="name flex">
+<span>def <span class="ident">tecla</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Lee el estado del teclado y realiza las acciones acorde a la
+tecla presionada y al estado actual del personaje.</p>
+<p>X = Salto
+C = Salto largo
+P = Pausa</p></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">def tecla():
+    &#34;&#34;&#34;Lee el estado del teclado y realiza las acciones acorde a la
+    tecla presionada y al estado actual del personaje.
+
+    X = Salto
+    C = Salto largo
+    P = Pausa
+    &#34;&#34;&#34;
+    global salto, salto_largo, pause, tiempo_pausa
+
+    teclado = pygame.key.get_pressed()
+
+    if teclado[K_p] and pause is False and tiempo_pausa == 0:
+        pause = True
+        detener()
+
+    if pause is False:
+        if teclado[K_x] and salto is False and salto_largo is False:
+            salto = True
+
+        if teclado[K_c] and salto is False and salto_largo is False:
+            salto_largo = True
+
+    else:
+        pause = True
+
+    for eventos in pygame.event.get():
+        if eventos.type == pygame.QUIT:
+            sys.exit()
+
+    return</code></pre>
+</details>
+</dd>
+<dt id="juego2(R)D.un_seg"><code class="name flex">
+<span>def <span class="ident">un_seg</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Funsion que hace de espera un segundo antes de seguir adelante
+con el codigo</p></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">def un_seg():
+    &#34;&#34;&#34;Funsion que hace de espera un segundo antes de seguir adelante
+    con el codigo
+    &#34;&#34;&#34;
+    fps.tick(1)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="juego2(R)D.Ratt1"><code class="flex name class">
+<span>class <span class="ident">Ratt1</span></span>
+<span>(</span><span>foto1)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>simple base class for visible game objects</p>
+<p>pygame.sprite.Sprite(*groups): return Sprite</p>
+<p>The base class for visible game objects. Derived classes will want to
+override the Sprite.update() method and assign Sprite.image and Sprite.rect
+attributes.
+The initializer can accept any number of Group instances that
+the Sprite will become a member of.</p>
+<p>When subclassing the Sprite class, be sure to call the base initializer
+before adding the Sprite to Groups.</p>
+<p>Funcion que crea el objeto de enemigo y marca sus
+animaciones de comportamiento</p>
+<h2 id="args">Args</h2>
+<p>foto1 (class 'pygame.Surface'): Imagenes de enemigo</p></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">class Ratt1(pygame.sprite.Sprite):
+    def __init__(self, foto1):
+        &#34;&#34;&#34;Funcion que crea el objeto de enemigo y marca sus
+        animaciones de comportamiento
+        Args:
+            foto1 (class &#39;pygame.Surface&#39;): Imagenes de enemigo
+        &#34;&#34;&#34;
+
+        # Carga el constructor de la clase padre (pygame.sprite.Sprite)
+        pygame.sprite.Sprite.__init__(self)
+
+        self.sprite_foto1 = foto1
+        self.r1_sprite = 0  # Indice de la posicion de cada sprite
+        self.siguiente = 0  # Contador de espera para animaciones
+        self.rapidez = 6  # Velocidad de la animacion de correr
+
+        # Lista con las posiciones de cada sprite en la sprite foto1.
+        self.r1 = {0: (2, 2, 87, 60), 1: (95, 5, 90, 57), 2: (191, 2, 72, 60)}
+
+        self.image = self.sprite_foto1.subsurface(self.r1[self.r1_sprite])
+        self.image.set_colorkey(self.image.get_at((0, 0)), pygame.RLEACCEL)
+
+        # self.rect = self.image.get_rect()
+        self.rect = self.image.get_rect().inflate(-15, -5)
+
+    def camina1(self):
+        &#34;&#34;&#34;Actualiza la imagen del sprite para animar la accion de
+        correr
+        &#34;&#34;&#34;
+        self.siguiente += 1
+
+        if self.siguiente &gt; self.rapidez:
+            self.r1_sprite += 1
+            self.siguiente = 0
+            if self.r1_sprite &gt; 2:
+                self.r1_sprite = 0
+
+            self.image = self.sprite_foto1.subsurface(self.r1[self.r1_sprite])
+            self.image.set_colorkey(self.image.get_at((0, 0)), pygame.RLEACCEL)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>pygame.sprite.Sprite</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="juego2(R)D.Ratt1.camina1"><code class="name flex">
+<span>def <span class="ident">camina1</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Actualiza la imagen del sprite para animar la accion de
+correr</p></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">def camina1(self):
+    &#34;&#34;&#34;Actualiza la imagen del sprite para animar la accion de
+    correr
+    &#34;&#34;&#34;
+    self.siguiente += 1
+
+    if self.siguiente &gt; self.rapidez:
+        self.r1_sprite += 1
+        self.siguiente = 0
+        if self.r1_sprite &gt; 2:
+            self.r1_sprite = 0
+
+        self.image = self.sprite_foto1.subsurface(self.r1[self.r1_sprite])
+        self.image.set_colorkey(self.image.get_at((0, 0)), pygame.RLEACCEL)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="juego2(R)D.Ratt2"><code class="flex name class">
+<span>class <span class="ident">Ratt2</span></span>
+<span>(</span><span>foto2)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>simple base class for visible game objects</p>
+<p>pygame.sprite.Sprite(*groups): return Sprite</p>
+<p>The base class for visible game objects. Derived classes will want to
+override the Sprite.update() method and assign Sprite.image and Sprite.rect
+attributes.
+The initializer can accept any number of Group instances that
+the Sprite will become a member of.</p>
+<p>When subclassing the Sprite class, be sure to call the base initializer
+before adding the Sprite to Groups.</p>
+<p>Funcion que crea el objeto de enemigo y marca sus
+animaciones de comportamiento</p>
+<h2 id="args">Args</h2>
+<p>foto2 (class 'pygame.Surface'): Imagenes de enemigo</p></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">class Ratt2(pygame.sprite.Sprite):
+    def __init__(self, foto2):
+        &#34;&#34;&#34;Funcion que crea el objeto de enemigo y marca sus
+        animaciones de comportamiento
+        Args:
+            foto2 (class &#39;pygame.Surface&#39;): Imagenes de enemigo
+        &#34;&#34;&#34;
+
+        # Carga el constructor de la clase padre (pygame.sprite.Sprite)
+        pygame.sprite.Sprite.__init__(self)
+
+        self.sprite_foto2 = foto2
+        self.r2_sprite = 0  # Indice de la posicion de cada sprite
+        self.siguiente = 0  # Contador de espera para animaciones
+        self.rapidez = 6  # Velocidad de la animacion de correr
+
+        # Lista con las posiciones de cada sprite en la sprite foto2.
+        self.r2 = {0: (2, 2, 72, 60), 1: (80, 2, 87, 60), 2: (173, 5, 90, 57)}
+
+        self.image = self.sprite_foto2.subsurface(self.r2[self.r2_sprite])
+        self.image.set_colorkey(self.image.get_at((0, 0)), pygame.RLEACCEL)
+
+        # self.rect = self.image.get_rect()
+        self.rect = self.image.get_rect().inflate(-15, -5)
+
+    def camina2(self):
+        &#34;&#34;&#34;Actualiza la imagen del sprite para animar la accion de
+        correr
+        &#34;&#34;&#34;
+        self.siguiente += 1
+
+        if self.siguiente &gt; self.rapidez:
+            self.r2_sprite += 1
+            self.siguiente = 0
+            if self.r2_sprite &gt; 2:
+                self.r2_sprite = 0
+
+            self.image = self.sprite_foto2.subsurface(self.r2[self.r2_sprite])
+            self.image.set_colorkey(self.image.get_at((0, 0)), pygame.RLEACCEL)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>pygame.sprite.Sprite</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="juego2(R)D.Ratt2.camina2"><code class="name flex">
+<span>def <span class="ident">camina2</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Actualiza la imagen del sprite para animar la accion de
+correr</p></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">def camina2(self):
+    &#34;&#34;&#34;Actualiza la imagen del sprite para animar la accion de
+    correr
+    &#34;&#34;&#34;
+    self.siguiente += 1
+
+    if self.siguiente &gt; self.rapidez:
+        self.r2_sprite += 1
+        self.siguiente = 0
+        if self.r2_sprite &gt; 2:
+            self.r2_sprite = 0
+
+        self.image = self.sprite_foto2.subsurface(self.r2[self.r2_sprite])
+        self.image.set_colorkey(self.image.get_at((0, 0)), pygame.RLEACCEL)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="juego2(R)D.Zang"><code class="flex name class">
+<span>class <span class="ident">Zang</span></span>
+<span>(</span><span>sheet)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>simple base class for visible game objects</p>
+<p>pygame.sprite.Sprite(*groups): return Sprite</p>
+<p>The base class for visible game objects. Derived classes will want to
+override the Sprite.update() method and assign Sprite.image and Sprite.rect
+attributes.
+The initializer can accept any number of Group instances that
+the Sprite will become a member of.</p>
+<p>When subclassing the Sprite class, be sure to call the base initializer
+before adding the Sprite to Groups.</p>
+<p>Funcion que crea el objeto de protagonista y marca sus
+animaciones de comportamiento</p>
+<h2 id="args">Args</h2>
+<p>sheet (class 'pygame.Surface'): Imagenes del protagonista</p></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">class Zang(pygame.sprite.Sprite):
+    def __init__(self, sheet):
+        &#34;&#34;&#34;Funcion que crea el objeto de protagonista y marca sus
+        animaciones de comportamiento
+        Args:
+            sheet (class &#39;pygame.Surface&#39;): Imagenes del protagonista
+        &#34;&#34;&#34;
+
+        # Carga el constructor de la clase padre (pygame.sprite.Sprite)
+        pygame.sprite.Sprite.__init__(self)
+
+        self.zang_sheet = sheet
+        print(type(self.zang_sheet))
+        self.i_zang = 0  # Indice de la posicion de cada sprite
+        self.espera = 0  # Contador de espera para animaciones
+        self.velocidad = 6  # Velocidad de la animacion de correr
+
+        # Lista con las posiciones de cada sprite en la sprite sheet.
+        # 0-3: Animacion de correr, 4: ascenso, 5: Punto medio de salto
+        # 6: Descenso del salto, 7: Colision
+        self.mueve = {0: (2, 2, 101, 81), 1: (113, 8, 99, 75),
+                      2: (224, 2, 99, 81), 3: (336, 8, 96, 75),
+                      4: (543, 3, 101, 85), 5: (659, 8, 96, 75),
+                      6: (766, 1, 89, 95), 7: (450, 5, 84, 87)}
+
+        self.image = self.zang_sheet.subsurface(self.mueve[self.i_zang])
+        self.image.set_colorkey(self.image.get_at((0, 0)), pygame.RLEACCEL)
+
+        self.rect = self.image.get_rect().inflate(-17, -8)
+
+    def corre(self):
+        &#34;&#34;&#34;Actualiza la imagen del sprite para animar la accion de
+        correr
+        &#34;&#34;&#34;
+        self.espera += 1
+
+        if self.espera &gt; self.velocidad:
+            self.i_zang += 1
+            self.espera = 0
+            if self.i_zang &gt; 3:
+                self.i_zang = 0
+
+            self.image = self.zang_sheet.subsurface(self.mueve[self.i_zang])
+            self.image.set_colorkey(self.image.get_at((0, 0)), pygame.RLEACCEL)
+
+    def salta(self, direccion=&#34;&#34;):
+        &#34;&#34;&#34;Actualiza la imagen del protagonista para animar la accion
+        de saltar
+        Args:
+            direccion (String): &#34;arriba&#34;, &#34;abajo&#34;, &#34;&#34;
+        &#34;&#34;&#34;
+        if direccion == &#34;arriba&#34;:
+            self.image = self.zang_sheet.subsurface(self.mueve[4])
+            self.image.set_colorkey(self.image.get_at((0, 0)), pygame.RLEACCEL)
+
+        elif direccion == &#34;abajo&#34;:
+            self.image = self.zang_sheet.subsurface(self.mueve[6])
+            self.image.set_colorkey(self.image.get_at((0, 0)), pygame.RLEACCEL)
+
+        else:
+            self.image = self.zang_sheet.subsurface(self.mueve[5])
+            self.image.set_colorkey(self.image.get_at((0, 0)), pygame.RLEACCEL)
+
+    def golpe(self):
+        &#34;&#34;&#34;Muestra la animacion de golpe
+        &#34;&#34;&#34;
+        self.image = self.zang_sheet.subsurface(self.mueve[7])
+        self.image.set_colorkey(self.image.get_at((0, 0)), pygame.RLEACCEL)
+        pygame.mixer.music.pause()</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>pygame.sprite.Sprite</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="juego2(R)D.Zang.corre"><code class="name flex">
+<span>def <span class="ident">corre</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Actualiza la imagen del sprite para animar la accion de
+correr</p></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">def corre(self):
+    &#34;&#34;&#34;Actualiza la imagen del sprite para animar la accion de
+    correr
+    &#34;&#34;&#34;
+    self.espera += 1
+
+    if self.espera &gt; self.velocidad:
+        self.i_zang += 1
+        self.espera = 0
+        if self.i_zang &gt; 3:
+            self.i_zang = 0
+
+        self.image = self.zang_sheet.subsurface(self.mueve[self.i_zang])
+        self.image.set_colorkey(self.image.get_at((0, 0)), pygame.RLEACCEL)</code></pre>
+</details>
+</dd>
+<dt id="juego2(R)D.Zang.golpe"><code class="name flex">
+<span>def <span class="ident">golpe</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Muestra la animacion de golpe</p></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">def golpe(self):
+    &#34;&#34;&#34;Muestra la animacion de golpe
+    &#34;&#34;&#34;
+    self.image = self.zang_sheet.subsurface(self.mueve[7])
+    self.image.set_colorkey(self.image.get_at((0, 0)), pygame.RLEACCEL)
+    pygame.mixer.music.pause()</code></pre>
+</details>
+</dd>
+<dt id="juego2(R)D.Zang.salta"><code class="name flex">
+<span>def <span class="ident">salta</span></span>(<span>self, direccion='')</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Actualiza la imagen del protagonista para animar la accion
+de saltar</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>direccion</code></strong> :&ensp;<code>String</code></dt>
+<dd>"arriba", "abajo", ""</dd>
+</dl></section>
+<details class="source">
+<summary>Source code</summary>
+<pre><code class="python">def salta(self, direccion=&#34;&#34;):
+    &#34;&#34;&#34;Actualiza la imagen del protagonista para animar la accion
+    de saltar
+    Args:
+        direccion (String): &#34;arriba&#34;, &#34;abajo&#34;, &#34;&#34;
+    &#34;&#34;&#34;
+    if direccion == &#34;arriba&#34;:
+        self.image = self.zang_sheet.subsurface(self.mueve[4])
+        self.image.set_colorkey(self.image.get_at((0, 0)), pygame.RLEACCEL)
+
+    elif direccion == &#34;abajo&#34;:
+        self.image = self.zang_sheet.subsurface(self.mueve[6])
+        self.image.set_colorkey(self.image.get_at((0, 0)), pygame.RLEACCEL)
+
+    else:
+        self.image = self.zang_sheet.subsurface(self.mueve[5])
+        self.image.set_colorkey(self.image.get_at((0, 0)), pygame.RLEACCEL)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="two-column">
+<li><code><a title="juego2(R)D.actualizar" href="#juego2(R)D.actualizar">actualizar</a></code></li>
+<li><code><a title="juego2(R)D.cargar" href="#juego2(R)D.cargar">cargar</a></code></li>
+<li><code><a title="juego2(R)D.detectar_colision" href="#juego2(R)D.detectar_colision">detectar_colision</a></code></li>
+<li><code><a title="juego2(R)D.detener" href="#juego2(R)D.detener">detener</a></code></li>
+<li><code><a title="juego2(R)D.final" href="#juego2(R)D.final">final</a></code></li>
+<li><code><a title="juego2(R)D.iniciar" href="#juego2(R)D.iniciar">iniciar</a></code></li>
+<li><code><a title="juego2(R)D.intro" href="#juego2(R)D.intro">intro</a></code></li>
+<li><code><a title="juego2(R)D.main" href="#juego2(R)D.main">main</a></code></li>
+<li><code><a title="juego2(R)D.morido" href="#juego2(R)D.morido">morido</a></code></li>
+<li><code><a title="juego2(R)D.mover_rattata1" href="#juego2(R)D.mover_rattata1">mover_rattata1</a></code></li>
+<li><code><a title="juego2(R)D.mover_rattata2" href="#juego2(R)D.mover_rattata2">mover_rattata2</a></code></li>
+<li><code><a title="juego2(R)D.mover_zangoose" href="#juego2(R)D.mover_zangoose">mover_zangoose</a></code></li>
+<li><code><a title="juego2(R)D.nivel" href="#juego2(R)D.nivel">nivel</a></code></li>
+<li><code><a title="juego2(R)D.tecla" href="#juego2(R)D.tecla">tecla</a></code></li>
+<li><code><a title="juego2(R)D.un_seg" href="#juego2(R)D.un_seg">un_seg</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="juego2(R)D.Ratt1" href="#juego2(R)D.Ratt1">Ratt1</a></code></h4>
+<ul class="">
+<li><code><a title="juego2(R)D.Ratt1.camina1" href="#juego2(R)D.Ratt1.camina1">camina1</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="juego2(R)D.Ratt2" href="#juego2(R)D.Ratt2">Ratt2</a></code></h4>
+<ul class="">
+<li><code><a title="juego2(R)D.Ratt2.camina2" href="#juego2(R)D.Ratt2.camina2">camina2</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="juego2(R)D.Zang" href="#juego2(R)D.Zang">Zang</a></code></h4>
+<ul class="">
+<li><code><a title="juego2(R)D.Zang.corre" href="#juego2(R)D.Zang.corre">corre</a></code></li>
+<li><code><a title="juego2(R)D.Zang.golpe" href="#juego2(R)D.Zang.golpe">golpe</a></code></li>
+<li><code><a title="juego2(R)D.Zang.salta" href="#juego2(R)D.Zang.salta">salta</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.6.2</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>
