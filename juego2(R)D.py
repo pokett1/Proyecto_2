@@ -16,7 +16,6 @@ class Zang(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         self.zang_sheet = sheet
-        print(type(self.zang_sheet))
         self.i_zang = 0  # Indice de la posicion de cada sprite
         self.espera = 0  # Contador de espera para animaciones
         self.velocidad = 6  # Velocidad de la animacion de correr
@@ -165,7 +164,7 @@ ALTO = 420
 
 # Posicion del personaje
 pos_x = 25
-POS_Y = 242
+pos_y = 242
 
 # Tiempo que permanece en el aire.
 SALTO_DIST = 20
@@ -209,10 +208,17 @@ def intro():
     """
     global comienza
 
-    texto_pausa = pygame.font.SysFont(None, 55)
-    pantalla_pausa = texto_pausa.render("Pesione espacio para iniciar", True, pygame.Color("white"))
-    centro_pausa = pantalla_pausa.get_rect(center=pantalla.get_rect().center)
-    pantalla.blit(pantalla_pausa, centro_pausa)
+    texto_inicio = pygame.font.SysFont(None, 55)
+    pantalla_inicio = texto_inicio.render("Pesione espacio para iniciar", True,
+                                        pygame.Color("white"))
+    centro_inicio = pantalla_inicio.get_rect(center=pantalla.get_rect().center)
+    pantalla.blit(pantalla_inicio, centro_inicio)
+
+    texto_tecla = pygame.font.SysFont(None, 38)
+    pantalla_tecla = texto_tecla.render("[X] salto corto || [C] salto largo",
+                                        True, pygame.Color("white"))
+    centro_tecla = pantalla_tecla.get_rect(center=pantalla.get_rect().center)
+    pantalla.blit(pantalla_tecla, [185, 235])
 
     pygame.display.update()
 
@@ -306,7 +312,7 @@ def nivel():
     pocisiones del personaje y de los enemigos.
     """
     global nivel_2, bloque_x1, bloque_x2
-    global POS_Y, pos_x, caida, salto, salto_largo, salto_espera
+    global pos_y, pos_x, caida, salto, salto_largo, salto_espera
 
     texto_mas = pygame.font.SysFont(None, 90)
     pantalla_mas = texto_mas.render("NIVEL 2", True, pygame.Color("white"))
@@ -321,7 +327,7 @@ def nivel():
     caida = False
     salto_espera = 0
     pos_x = 325
-    POS_Y = 242
+    pos_y = 242
     zangoose.i_sprite = 0
 
     pygame.display.update()
@@ -355,7 +361,7 @@ def mover_zangoose():
     que este haciendo ("correr" o saltar)
     """
     global salto, caida, fondo_x, tiempo, salto_largo, salto_espera
-    global pos_x, POS_Y, vidas, v_r
+    global pos_x, pos_y, vidas, v_r
 
     # Movimiento del fondo
     if fondo_x == -1083 or fondo_x == -1084:
@@ -376,7 +382,7 @@ def mover_zangoose():
     pantalla.blit(v_r, [25, 25])
 
     zangoose.rect.x = pos_x
-    zangoose.rect.y = POS_Y
+    zangoose.rect.y = pos_y
 
     # Movimiento del personaje
     if salto is False and salto_largo is False:
@@ -386,24 +392,24 @@ def mover_zangoose():
     if salto is True:
 
         if caida is False:
-            POS_Y -= 3
-            if POS_Y > 140:
+            pos_y -= 3
+            if pos_y > 140:
                 zangoose.salta("arriba")
 
         if caida is True:
-            POS_Y += 3
+            pos_y += 3
             zangoose.salta("abajo")
 
-        if POS_Y == 137:
+        if pos_y == 137:
             salto_espera += 1
-            POS_Y = 140
+            pos_y = 140
             zangoose.salta()
             if salto_espera > SALTO_DIST:
                 salto_espera = 0
-                POS_Y = 137
+                pos_y = 137
                 caida = True
 
-        if POS_Y == 242:
+        if pos_y == 242:
             caida = False
             salto = False
             salto_largo = False
@@ -412,24 +418,24 @@ def mover_zangoose():
     if salto_largo is True:
 
         if caida is False:
-            POS_Y -= 3
-            if POS_Y > 140:
+            pos_y -= 3
+            if pos_y > 140:
                 zangoose.salta("arriba")
 
         if caida is True:
-            POS_Y += 3
+            pos_y += 3
             zangoose.salta("abajo")
 
-        if POS_Y == 137:
+        if pos_y == 137:
             salto_espera += 1
-            POS_Y = 140
+            pos_y = 140
             zangoose.salta()
             if salto_espera > SALTO_LARGO_DIST:
                 salto_espera = 0
-                POS_Y = 137
+                pos_y = 137
                 caida = True
 
-        if POS_Y == 242:
+        if pos_y == 242:
             caida = False
             salto = False
             salto_largo = False
@@ -457,19 +463,17 @@ def mover_rattata1():
 
             if nivel_1 is True:
                 contador_nivel += 1
-                print(contador_nivel)
 
-                if contador_nivel == 2:
+                if contador_nivel == 5:
                     nivel_1 = False
                     nivel()
                     contador_nivel = 0
 
             if nivel_2 is True:
                 contador_nivel += 1
-                print(contador_nivel)
 
                 pasa_rata = 2
-                if contador_nivel == 2:
+                if contador_nivel == 4:
                     nivel_2 = False
                     final()
 
@@ -507,7 +511,6 @@ def detectar_colision():
         zangoose.golpe()
         sprite_lista.draw(pantalla)
         pygame.display.flip()
-        un_seg()
         pause = True
         morido()
 
@@ -580,7 +583,7 @@ def morido():
     sucede una colision.
     """
 
-    global pause, pantalla, sprite_lista, bloque_x1, bloque_x2, POS_Y, vidas
+    global pause, pantalla, sprite_lista, bloque_x1, bloque_x2, pos_y, vidas
     global caida, salto, salto_largo, salto_espera, contador_nivel
 
     vidas -= 1
@@ -614,7 +617,7 @@ def morido():
                         salto_largo = False
                         caida = False
                         salto_espera = 0
-                        POS_Y = 242
+                        pos_y = 242
                         zangoose.i_sprite = 0
                         if nivel_1:
                             contador_nivel = 0
@@ -626,13 +629,6 @@ def morido():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     quit()
-
-
-def un_seg():
-    """Funsion que hace de espera un segundo antes de seguir adelante
-    con el codigo
-    """
-    fps.tick(1)
 
 
 def main():
