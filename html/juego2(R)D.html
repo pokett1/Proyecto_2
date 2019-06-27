@@ -234,14 +234,13 @@ def intro():
 
     texto_inicio = pygame.font.SysFont(None, 55)
     pantalla_inicio = texto_inicio.render(&#34;Pesione espacio para iniciar&#34;, True,
-                                        pygame.Color(&#34;white&#34;))
+                                          pygame.Color(&#34;white&#34;))
     centro_inicio = pantalla_inicio.get_rect(center=pantalla.get_rect().center)
     pantalla.blit(pantalla_inicio, centro_inicio)
 
     texto_tecla = pygame.font.SysFont(None, 38)
     pantalla_tecla = texto_tecla.render(&#34;[X] salto corto || [C] salto largo&#34;,
                                         True, pygame.Color(&#34;white&#34;))
-    centro_tecla = pantalla_tecla.get_rect(center=pantalla.get_rect().center)
     pantalla.blit(pantalla_tecla, [185, 235])
 
     pygame.display.update()
@@ -877,14 +876,13 @@ musica, se ejecuta una unica vez al inicio del programa.</p></section>
 
     texto_inicio = pygame.font.SysFont(None, 55)
     pantalla_inicio = texto_inicio.render(&#34;Pesione espacio para iniciar&#34;, True,
-                                        pygame.Color(&#34;white&#34;))
+                                          pygame.Color(&#34;white&#34;))
     centro_inicio = pantalla_inicio.get_rect(center=pantalla.get_rect().center)
     pantalla.blit(pantalla_inicio, centro_inicio)
 
     texto_tecla = pygame.font.SysFont(None, 38)
     pantalla_tecla = texto_tecla.render(&#34;[X] salto corto || [C] salto largo&#34;,
                                         True, pygame.Color(&#34;white&#34;))
-    centro_tecla = pantalla_tecla.get_rect(center=pantalla.get_rect().center)
     pantalla.blit(pantalla_tecla, [185, 235])
 
     pygame.display.update()
