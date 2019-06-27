@@ -210,14 +210,13 @@ def intro():
 
     texto_inicio = pygame.font.SysFont(None, 55)
     pantalla_inicio = texto_inicio.render("Pesione espacio para iniciar", True,
-                                        pygame.Color("white"))
+                                          pygame.Color("white"))
     centro_inicio = pantalla_inicio.get_rect(center=pantalla.get_rect().center)
     pantalla.blit(pantalla_inicio, centro_inicio)
 
     texto_tecla = pygame.font.SysFont(None, 38)
     pantalla_tecla = texto_tecla.render("[X] salto corto || [C] salto largo",
                                         True, pygame.Color("white"))
-    centro_tecla = pantalla_tecla.get_rect(center=pantalla.get_rect().center)
     pantalla.blit(pantalla_tecla, [185, 235])
 
     pygame.display.update()
